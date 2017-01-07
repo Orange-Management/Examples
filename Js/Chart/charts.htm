@@ -1,0 +1,558 @@
+<html>
+    <head>
+        <script src="http://127.0.0.1/Resources/d3/d3.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="http://127.0.0.1/cssOMS/chart/chart.css">
+        <link rel="stylesheet" type="text/css" href="http://127.0.0.1/cssOMS/chart/chart_line.css">
+        <link rel="stylesheet" type="text/css" href="http://127.0.0.1/cssOMS/chart/chart_bar.css">
+        <script src="http://127.0.0.1/jsOMS/Utils/oLib.js"></script>
+        <script src="http://127.0.0.1/jsOMS/Asset/AssetManager.js"></script>
+        <script src="http://127.0.0.1/jsOMS/Autoloader.js"></script>
+        <script src="http://127.0.0.1/jsOMS/Chart/ChartAbstract.js"></script>
+        <script src="http://127.0.0.1/jsOMS/Chart/LineChart.js"></script>
+        <script src="http://127.0.0.1/jsOMS/Chart/AreaChart.js"></script>
+        <script src="http://127.0.0.1/jsOMS/Chart/StackedAreaChart.js"></script>
+        <script src="http://127.0.0.1/jsOMS/Chart/ColumnChart.js"></script>
+        <script src="http://127.0.0.1/jsOMS/Chart/GroupedColumnChart.js"></script>
+        <script src="http://127.0.0.1/jsOMS/Chart/StackedColumnChart.js"></script>
+        <script src="http://127.0.0.1/jsOMS/Chart/PieChart.js"></script>
+        <script src="http://127.0.0.1/jsOMS/Chart/DonutChart.js"></script>
+        <script src="http://127.0.0.1/jsOMS/Chart/WaterfallChart.js"></script>
+        <script src="http://127.0.0.1/jsOMS/Chart/PyramidChart.js"></script>
+        <script src="http://127.0.0.1/jsOMS/Chart/ScatterplotChart.js"></script>
+    </head>
+<body>
+<div id="line-chart" class="chart chart-line" style="width: 33%; height: 170px; float: left;"></div>
+<script>
+var c, chart, data, dataGen, i, k, count;
+
+dataGen = (function ()
+{
+    return (function (id)
+    {
+        return function ()
+        {
+            var tempData, j, nums, y1Seed;
+            nums     = Math.ceil(Math.random() * 50) + 4;
+            y1Seed   = Math.round(Math.random() * 20);
+            tempData = {
+                id: id,
+                name: "Dataset " + id,
+                points: (function ()
+                {
+                    var k, ref, results, prev, counter = 0;
+                    results                            = [];
+                    for (j = k = 1, ref = nums; 1 <= ref ? k <= ref : k >= ref; j = 1 <= ref ? ++k : --k) {
+                        if (data.length > 0) {
+                            if (typeof data[count - 2].points !== 'undefined' && data[count - 2].points.length > counter && typeof data[count - 2].points[counter].y !== 'undefined') {
+                                prev = data[count - 2].points[counter].y;
+                            } else {
+                                prev = 0;
+                            }
+                        } else {
+                            prev = 0;
+                        }
+
+                        counter++;
+
+                        results.push({
+                            x: j,
+                            y: y1Seed + Math.round(Math.random() * 5),
+                            y0: prev
+                        });
+                    }
+
+                    return results;
+                })()
+            };
+            id       = id + 1;
+            return tempData;
+        };
+    })(1);
+})();
+
+data = [];
+
+for (i = k = 1; k <= 3; i = ++k) {
+    count = i;
+    data.push(dataGen());
+}
+
+var linechart = new jsOMS.Chart.LineChart('line-chart');
+linechart.setData(data);
+linechart.draw();
+</script>
+
+<div id="area-chart" class="chart chart-area" style="width: 33%; height: 170px; float: left;"></div>
+
+<script>
+var c, chart, data, dataGen, i, k, count;
+
+dataGen = (function ()
+{
+    return (function (id)
+    {
+        return function ()
+        {
+            var tempData, j, nums, y1Seed;
+            nums     = Math.ceil(Math.random() * 50) + 4;
+            y1Seed   = Math.round(Math.random() * 20);
+            tempData = {
+                id: id,
+                name: "Dataset " + id,
+                points: (function ()
+                {
+                    var k, ref, results, prev, counter = 0;
+                    results                            = [];
+                    for (j = k = 1, ref = nums; 1 <= ref ? k <= ref : k >= ref; j = 1 <= ref ? ++k : --k) {
+                        if (data.length > 0) {
+                            if (typeof data[count - 2].points !== 'undefined' && data[count - 2].points.length > counter && typeof data[count - 2].points[counter].y !== 'undefined') {
+                                prev = data[count - 2].points[counter].y;
+                            } else {
+                                prev = 0;
+                            }
+                        } else {
+                            prev = 0;
+                        }
+
+                        counter++;
+
+                        results.push({
+                            x: j,
+                            y: y1Seed + Math.round(Math.random() * 5),
+                            y0: prev
+                        });
+                    }
+
+                    return results;
+                })()
+            };
+            id       = id + 1;
+            return tempData;
+        };
+    })(1);
+})();
+
+data = [];
+
+for (i = k = 1; k <= 1; i = ++k) {
+    count = i;
+    data.push(dataGen());
+}
+
+var areachart = new jsOMS.Chart.AreaChart('area-chart');
+areachart.setData(data);
+areachart.draw();
+</script>
+
+<div id="stackedarea-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
+
+<script>
+var c, chart, data, dataGen, i, k, count;
+
+dataGen = (function ()
+{
+    return (function (id)
+    {
+        return function ()
+        {
+            var tempData, j, nums, y1Seed;
+            nums     = Math.ceil(Math.random() * 50) + 4;
+            y1Seed   = Math.round(Math.random() * 20);
+            tempData = {
+                id: id,
+                name: "Dataset " + id,
+                points: (function ()
+                {
+                    var k, ref, results, prev, counter = 0;
+                    results                            = [];
+                    for (j = k = 1, ref = nums; 1 <= ref ? k <= ref : k >= ref; j = 1 <= ref ? ++k : --k) {
+                        if (data.length > 0) {
+                            if (typeof data[count - 2].points !== 'undefined' && data[count - 2].points.length > counter && typeof data[count - 2].points[counter].y !== 'undefined') {
+                                prev = data[count - 2].points[counter].y;
+                            } else {
+                                prev = 0;
+                            }
+                        } else {
+                            prev = 0;
+                        }
+
+                        counter++;
+
+                        results.push({
+                            x: j,
+                            y: y1Seed + Math.round(Math.random() * 5),
+                            y0: prev
+                        });
+                    }
+
+                    return results;
+                })()
+            };
+            id       = id + 1;
+            return tempData;
+        };
+    })(1);
+})();
+
+data = [];
+
+for (i = k = 1; k <= 3; i = ++k) {
+    count = i;
+    data.push(dataGen());
+}
+
+var stackedareachart = new jsOMS.Chart.StackedAreaChart('stackedarea-chart');
+stackedareachart.setData(data);
+stackedareachart.draw();
+</script>
+
+<div id="diffarea-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
+
+<div id="bar-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
+
+<div id="groupedbar-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
+
+<div id="stackedbar-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
+
+<div id="vwaterfall-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
+
+<div id="waterfall-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
+
+<script>
+var waterfallchart = new jsOMS.Chart.WaterfallChart('waterfall-chart');
+waterfallchart.setData([
+    {name: 'EBIT', value: 100}, 
+    {name: 'two', value: -20}, 
+    {name: 'three', value: 5}, 
+    {name: 'four', value: -7}, 
+    {name: 'five', value: 2}, 
+    {name: 'six', value: 3}, 
+    {name: 'seven', value: 4}, 
+    {name: 'eight', value: -15},
+    {name: 'nine', value: 0}]);
+waterfallchart.draw();
+</script>
+
+<div id="column-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
+
+<script>
+var chart;
+
+var n      = 1, // number of layers
+    m      = 30, // number of samples per layer
+    stack  = d3.layout.stack(),
+    layers = stack(d3.range(n).map(function ()
+    {
+        return bumpLayer(m, .1);
+    }));
+
+function bumpLayer(n, o)
+{
+    function bump(a)
+    {
+        var x = 1 / (.1 + Math.random()),
+            y = 2 * Math.random() - .5,
+            z = 10 / (.1 + Math.random());
+
+        for (var i = 0; i < n; i++) {
+            var w = (i / n - y) * z;
+            a[i] += x * Math.exp(-w * w);
+        }
+    }
+
+    var a = [], i;
+    for (i = 0; i < n; ++i) a[i] = o + o * Math.random();
+    for (i = 0; i < 5; ++i) bump(a);
+    return a.map(function (d, i)
+    {
+        return {x: i, y: Math.max(0, d)};
+    });
+}
+
+for (let i = 0; i < layers.length; i++) {
+    layers[i] = {
+        id: i,
+        name: 'Dataset ' + i,
+        points: layers[i]
+    };
+}
+
+var columnchart = new jsOMS.Chart.ColumnChart('column-chart');
+columnchart.setData(layers);
+columnchart.draw();
+</script>
+
+<div id="groupedcolumn-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
+
+<script>
+var chart;
+
+var n      = 3, // number of layers
+    m      = 10, // number of samples per layer
+    stack  = d3.layout.stack(),
+    layers = stack(d3.range(n).map(function ()
+    {
+        return bumpLayer(m, .1);
+    }));
+
+function bumpLayer(n, o)
+{
+    function bump(a)
+    {
+        var x = 1 / (.1 + Math.random()),
+            y = 2 * Math.random() - .5,
+            z = 10 / (.1 + Math.random());
+
+        for (var i = 0; i < n; i++) {
+            var w = (i / n - y) * z;
+            a[i] += x * Math.exp(-w * w);
+        }
+    }
+
+    var a = [], i;
+    for (i = 0; i < n; ++i) a[i] = o + o * Math.random();
+    for (i = 0; i < 5; ++i) bump(a);
+    return a.map(function (d, i)
+    {
+        return {x: i, y: Math.max(0, d)};
+    });
+}
+
+for (let i = 0; i < layers.length; i++) {
+    layers[i] = {
+        id: i,
+        name: 'Dataset ' + i,
+        points: layers[i]
+    };
+}
+
+var groupedcolumnchart = new jsOMS.Chart.GroupedColumnChart('groupedcolumn-chart');
+groupedcolumnchart.setData(layers);
+groupedcolumnchart.draw();
+</script>
+
+<div id="stackedcolumn-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
+
+<script>
+var chart;
+
+var n      = 3, // number of layers
+    m      = 30, // number of samples per layer
+    stack  = d3.layout.stack(),
+    layers = stack(d3.range(n).map(function ()
+    {
+        return bumpLayer(m, .1);
+    }));
+
+function bumpLayer(n, o)
+{
+    function bump(a)
+    {
+        var x = 1 / (.1 + Math.random()),
+            y = 2 * Math.random() - .5,
+            z = 10 / (.1 + Math.random());
+
+        for (var i = 0; i < n; i++) {
+            var w = (i / n - y) * z;
+            a[i] += x * Math.exp(-w * w);
+        }
+    }
+
+    var a = [], i;
+    for (i = 0; i < n; ++i) a[i] = o + o * Math.random();
+    for (i = 0; i < 5; ++i) bump(a);
+    return a.map(function (d, i)
+    {
+        return {x: i, y: Math.max(0, d)};
+    });
+}
+
+for (let i = 0; i < layers.length; i++) {
+    layers[i] = {
+        id: i,
+        name: 'Dataset ' + i,
+        points: layers[i]
+    };
+}
+
+var stackedcolumnchart = new jsOMS.Chart.StackedColumnChart('stackedcolumn-chart');
+stackedcolumnchart.setData(layers);
+stackedcolumnchart.draw();
+</script>
+
+<div id="columnwaterfall-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
+
+<div id="pie-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
+<script>
+var c, chart, data, dataGen, i, k, count;
+
+dataGen = (function ()
+{
+    return (function (id)
+    {
+        return function ()
+        {
+            var tempData, j, nums, y1Seed;
+            nums     = Math.ceil(Math.random() * 5) + 2;
+            y1Seed   = Math.round(Math.random() * 10);
+            tempData = {
+                id: id,
+                name: "Dataset " + id,
+                points: (function ()
+                {
+                    var k, ref, results, prev;
+                    results = [];
+                    for (j = k = 1, ref = nums; 1 <= ref ? k <= ref : k >= ref; j = 1 <= ref ? ++k : --k) {
+                        results.push({
+                            name: 'Name ' + j,
+                            value: y1Seed + Math.round(Math.random() * 5),
+                        });
+                    }
+
+                    return results;
+                })()
+            };
+            id       = id + 1;
+            return tempData;
+        };
+    })(1);
+})();
+
+data = [];
+
+for (i = k = 1; k <= 1; i = ++k) {
+    count = i;
+    data.push(dataGen());
+}
+
+var piechart = new jsOMS.Chart.PieChart('pie-chart');
+piechart.setData(data);
+piechart.draw();
+</script>
+
+<div id="donut-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
+<script>
+var c, chart, data, dataGen, i, k, count;
+
+dataGen = (function ()
+{
+    return (function (id)
+    {
+        return function ()
+        {
+            var tempData, j, nums, y1Seed;
+            nums     = Math.ceil(Math.random() * 5) + 2;
+            y1Seed   = Math.round(Math.random() * 10);
+            tempData = {
+                id: id,
+                name: "Dataset " + id,
+                points: (function ()
+                {
+                    var k, ref, results, prev;
+                    results = [];
+                    for (j = k = 1, ref = nums; 1 <= ref ? k <= ref : k >= ref; j = 1 <= ref ? ++k : --k) {
+                        results.push({
+                            name: 'Name ' + j,
+                            value: y1Seed + Math.round(Math.random() * 5),
+                        });
+                    }
+
+                    return results;
+                })()
+            };
+            id       = id + 1;
+            return tempData;
+        };
+    })(1);
+})();
+
+data = [];
+
+for (i = k = 1; k <= 1; i = ++k) {
+    count = i;
+    data.push(dataGen());
+}
+
+var donutchart = new jsOMS.Chart.DonutChart('donut-chart');
+donutchart.setData(data);
+donutchart.draw();
+</script>
+
+<div id="gouge-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
+
+<div id="fill-gouge-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
+
+<div id="radar-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
+
+<div id="pyramid-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
+
+<script>
+var pyramidchart = new jsOMS.Chart.PyramidChart('waterfall-chart');
+pyramidchart.setData([
+    {name: 'EBIT', value: 100}, 
+    {name: 'two', value: -20}, 
+    {name: 'three', value: 5}, 
+    {name: 'four', value: -7}]); 
+pyramidchart.draw();
+</script>
+
+<div id="scatterplot-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
+
+<script>
+var scatterplotchart = new jsOMS.Chart.ScatterplotChart('scatterplot-chart');
+scatterplotchart.setData([
+    {
+        id: 1,
+        name: 'One',
+        points: [
+            {x: 5.8, y: 2.7, y0: 5.1},
+            {x: 7.1, y: 3.0, y0: 5.9},
+            {x: 6.3, y: 2.9, y0: 5.6},
+            {x: 6.5, y: 3.0, y0: 5.8},
+            {x: 7.6, y: 3.0, y0: 6.6},
+            {x: 4.9, y: 2.5, y0: 4.5}
+        ]
+    }, {
+        id: 2,
+        name: 'Two',
+        points: [
+            {x: 7.3, y: 2.9, y0: 6.3},
+            {x: 6.7, y: 2.5, y0: 5.8},
+            {x: 7.2, y: 3.6, y0: 6.1},
+            {x: 6.5, y: 3.2, y0: 5.1},
+            {x: 6.4, y: 2.7, y0: 5.3},
+            {x: 6.8, y: 3.0, y0: 5.5},
+            {x: 5.7, y: 2.5, y0: 5.0}
+        ]
+    }, {
+        id: 3,
+        name: 'Three',
+        points: [
+            {x: 5.8, y: 2.8, y0: 5.1},
+            {x: 6.4, y: 3.2, y0: 5.3},
+            {x: 6.5, y: 3.0, y0: 5.5},
+            {x: 7.7, y: 3.8, y0: 6.7},
+            {x: 7.7, y: 2.6, y0: 6.9},
+            {x: 6.0, y: 2.2, y0: 5.0},
+            {x: 6.9, y: 3.2, y0: 5.7},
+            {x: 5.6, y: 2.8, y0: 4.9}
+        ]
+    }]); 
+scatterplotchart.draw();
+</script>
+
+<div id="boxplot-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
+
+<div id="candlestick-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
+
+<div id="highlow-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
+
+<div id="calendar-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
+
+<div id="gantt-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
+
+<div id="map-heat-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
+
+<div id="map-bubble-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
+
+<div id="tree-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
