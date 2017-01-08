@@ -20,6 +20,8 @@
         <script src="http://127.0.0.1/jsOMS/Chart/PyramidChart.js"></script>
         <script src="http://127.0.0.1/jsOMS/Chart/ScatterplotChart.js"></script>
         <script src="http://127.0.0.1/jsOMS/Chart/CalendarChart.js"></script>
+        <script src="http://127.0.0.1/jsOMS/Chart/CandlestickChart.js"></script>
+        <script src="http://127.0.0.1/jsOMS/Chart/OhlcChart.js"></script>
     </head>
 <body>
 <div id="line-chart" class="chart chart-line" style="width: 33%; height: 170px; float: left;"></div>
@@ -546,7 +548,43 @@ scatterplotchart.draw();
 
 <div id="candlestick-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
 
+<script>
+var candlestickchart = new jsOMS.Chart.CandlestickChart('candlestick-chart');
+candlestickchart.setData([
+    {
+        id: 1,
+        name: 'One',
+        points: [
+            {x: 2, y0: 2.7, y: 5.1, open: 2.8, close: 4},
+            {x: 3, y0: 3.0, y: 5.9, open: 5, close: 4},
+            {x: 4, y0: 2.9, y: 5.6, open: 5, close: 5.6},
+            {x: 5, y0: 3.0, y: 5.8, open: 4, close: 4},
+            {x: 6, y0: 3.0, y: 6.6, open: 5.5, close: 3.5},
+            {x: 7, y0: 2.5, y: 4.5, open: 3, close: 3.2}
+        ]
+    }]); 
+candlestickchart.draw();
+</script>
+
 <div id="highlow-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
+
+<script>
+var ohlcchart = new jsOMS.Chart.OhlcChart('highlow-chart');
+ohlcchart.setData([
+    {
+        id: 1,
+        name: 'One',
+        points: [
+            {x: 2, y0: 2.7, y: 5.1, open: 2.8, close: 4},
+            {x: 3, y0: 3.0, y: 5.9, open: 5, close: 4},
+            {x: 4, y0: 2.9, y: 5.6, open: 5, close: 5.6},
+            {x: 5, y0: 3.0, y: 5.8, open: 4, close: 4},
+            {x: 6, y0: 3.0, y: 6.6, open: 5.5, close: 3.5},
+            {x: 7, y0: 2.5, y: 4.5, open: 3, close: 3.2}
+        ]
+    }]); 
+ohlcchart.draw();
+</script>
 
 <div id="calendar-chart" class="chart" style="width: 33%; height: 70px; float: left;"></div>
 
