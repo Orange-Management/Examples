@@ -10,13 +10,18 @@
         <script src="http://127.0.0.1/jsOMS/Chart/ChartAbstract.js"></script>
         <script src="http://127.0.0.1/jsOMS/Chart/LineChart.js"></script>
         <script src="http://127.0.0.1/jsOMS/Chart/AreaChart.js"></script>
+        <script src="http://127.0.0.1/jsOMS/Chart/DiffAreaChart.js"></script>
         <script src="http://127.0.0.1/jsOMS/Chart/StackedAreaChart.js"></script>
         <script src="http://127.0.0.1/jsOMS/Chart/ColumnChart.js"></script>
+        <script src="http://127.0.0.1/jsOMS/Chart/BarChart.js"></script>
         <script src="http://127.0.0.1/jsOMS/Chart/GroupedColumnChart.js"></script>
+        <script src="http://127.0.0.1/jsOMS/Chart/GroupedBarChart.js"></script>
         <script src="http://127.0.0.1/jsOMS/Chart/StackedColumnChart.js"></script>
+        <script src="http://127.0.0.1/jsOMS/Chart/StackedBarChart.js"></script>
         <script src="http://127.0.0.1/jsOMS/Chart/PieChart.js"></script>
         <script src="http://127.0.0.1/jsOMS/Chart/DonutChart.js"></script>
         <script src="http://127.0.0.1/jsOMS/Chart/WaterfallChart.js"></script>
+        <script src="http://127.0.0.1/jsOMS/Chart/VWaterfallChart.js"></script>
         <script src="http://127.0.0.1/jsOMS/Chart/PyramidChart.js"></script>
         <script src="http://127.0.0.1/jsOMS/Chart/ScatterplotChart.js"></script>
         <script src="http://127.0.0.1/jsOMS/Chart/CalendarChart.js"></script>
@@ -24,7 +29,10 @@
         <script src="http://127.0.0.1/jsOMS/Chart/OhlcChart.js"></script>
     </head>
 <body>
-<div id="line-chart" class="chart chart-line" style="width: 33%; height: 170px; float: left;"></div>
+<section style="float: left; width: 33%;">
+    <h1>Line Chart</h1>
+    <div id="line-chart" class="chart chart-line" style="width: 100%; height: 170px; float: left;"></div>
+</section>
 <script>
 var c, chart, data, dataGen, i, k, count;
 
@@ -72,9 +80,7 @@ dataGen = (function ()
         };
     })(1);
 })();
-
 data = [];
-
 for (i = k = 1; k <= 3; i = ++k) {
     count = i;
     data.push(dataGen());
@@ -85,58 +91,15 @@ linechart.setData(data);
 linechart.draw();
 </script>
 
-<div id="area-chart" class="chart chart-area" style="width: 33%; height: 170px; float: left;"></div>
+<section style="float: left; width: 33%;">
+    <h1>Area Chart</h1>
+    <div id="area-chart" class="chart chart-area" style="width: 100%; height: 170px; float: left;"></div>
+</section>
 
 <script>
 var c, chart, data, dataGen, i, k, count;
 
-dataGen = (function ()
-{
-    return (function (id)
-    {
-        return function ()
-        {
-            var tempData, j, nums, y1Seed;
-            nums     = Math.ceil(Math.random() * 50) + 4;
-            y1Seed   = Math.round(Math.random() * 20);
-            tempData = {
-                id: id,
-                name: "Dataset " + id,
-                points: (function ()
-                {
-                    var k, ref, results, prev, counter = 0;
-                    results                            = [];
-                    for (j = k = 1, ref = nums; 1 <= ref ? k <= ref : k >= ref; j = 1 <= ref ? ++k : --k) {
-                        if (data.length > 0) {
-                            if (typeof data[count - 2].points !== 'undefined' && data[count - 2].points.length > counter && typeof data[count - 2].points[counter].y !== 'undefined') {
-                                prev = data[count - 2].points[counter].y;
-                            } else {
-                                prev = 0;
-                            }
-                        } else {
-                            prev = 0;
-                        }
-
-                        counter++;
-
-                        results.push({
-                            x: j,
-                            y: y1Seed + Math.round(Math.random() * 5),
-                            y0: prev
-                        });
-                    }
-
-                    return results;
-                })()
-            };
-            id       = id + 1;
-            return tempData;
-        };
-    })(1);
-})();
-
 data = [];
-
 for (i = k = 1; k <= 1; i = ++k) {
     count = i;
     data.push(dataGen());
@@ -147,58 +110,15 @@ areachart.setData(data);
 areachart.draw();
 </script>
 
-<div id="stackedarea-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
+<section style="float: left; width: 33%;">
+    <h1>Stacked Area Chart</h1>
+    <div id="stackedarea-chart" class="chart" style="width: 100%; height: 170px; float: left;"></div>
+</section>
 
 <script>
 var c, chart, data, dataGen, i, k, count;
 
-dataGen = (function ()
-{
-    return (function (id)
-    {
-        return function ()
-        {
-            var tempData, j, nums, y1Seed;
-            nums     = Math.ceil(Math.random() * 50) + 4;
-            y1Seed   = Math.round(Math.random() * 20);
-            tempData = {
-                id: id,
-                name: "Dataset " + id,
-                points: (function ()
-                {
-                    var k, ref, results, prev, counter = 0;
-                    results                            = [];
-                    for (j = k = 1, ref = nums; 1 <= ref ? k <= ref : k >= ref; j = 1 <= ref ? ++k : --k) {
-                        if (data.length > 0) {
-                            if (typeof data[count - 2].points !== 'undefined' && data[count - 2].points.length > counter && typeof data[count - 2].points[counter].y !== 'undefined') {
-                                prev = data[count - 2].points[counter].y;
-                            } else {
-                                prev = 0;
-                            }
-                        } else {
-                            prev = 0;
-                        }
-
-                        counter++;
-
-                        results.push({
-                            x: j,
-                            y: y1Seed + Math.round(Math.random() * 5),
-                            y0: prev
-                        });
-                    }
-
-                    return results;
-                })()
-            };
-            id       = id + 1;
-            return tempData;
-        };
-    })(1);
-})();
-
 data = [];
-
 for (i = k = 1; k <= 3; i = ++k) {
     count = i;
     data.push(dataGen());
@@ -209,35 +129,29 @@ stackedareachart.setData(data);
 stackedareachart.draw();
 </script>
 
-<div id="diffarea-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
-
-<div id="bar-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
-
-<div id="groupedbar-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
-
-<div id="stackedbar-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
-
-<div id="vwaterfall-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
-
-<div id="waterfall-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
+<section style="float: left; width: 33%;">
+    <h1>Diff Area Chart</h1>
+    <div id="diffarea-chart" class="chart" style="width: 100%; height: 170px; float: left;"></div>
+</section>
 
 <script>
-var waterfallchart = new jsOMS.Chart.WaterfallChart('waterfall-chart');
-waterfallchart.setData([
-    {name: 'EBIT', value: 100}, 
-    {name: 'two', value: -20}, 
-    {name: 'three', value: 5}, 
-    {name: 'four', value: -7}, 
-    {name: 'five', value: 2}, 
-    {name: 'six', value: 3}, 
-    {name: 'seven', value: 4}, 
-    {name: 'eight', value: -15},
-    {name: 'nine', value: 0}]);
-waterfallchart.draw();
+var c, chart, data, dataGen, i, k, count;
+
+data = [];
+for (i = k = 1; k <= 1; i = ++k) {
+    count = i;
+    data.push(dataGen());
+}
+
+var diffareachart = new jsOMS.Chart.DiffAreaChart('diffarea-chart');
+diffareachart.setData(data);
+diffareachart.draw();
 </script>
 
-<div id="column-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
-
+<section style="float: left; width: 33%;">
+    <h1>Bar Chart</h1>
+    <div id="bar-chart" class="chart" style="width: 100%; height: 170px; float: left;"></div>
+</section>
 <script>
 var chart;
 
@@ -271,6 +185,121 @@ function bumpLayer(n, o)
         return {x: i, y: Math.max(0, d)};
     });
 }
+for (let i = 0; i < layers.length; i++) {
+    layers[i] = {
+        id: i,
+        name: 'Dataset ' + i,
+        points: layers[i]
+    };
+}
+
+var barchart = new jsOMS.Chart.BarChart('bar-chart');
+barchart.setData(layers);
+barchart.draw();
+</script>
+
+<section style="float: left; width: 33%;">
+    <h1>Grouped Bar Chart</h1>
+    <div id="groupedbar-chart" class="chart" style="width: 100%; height: 170px; float: left;"></div>
+</section>
+
+<script>
+var chart;
+
+var n      = 3, // number of layers
+    m      = 10, // number of samples per layer
+    stack  = d3.layout.stack(),
+    layers = stack(d3.range(n).map(function ()
+    {
+        return bumpLayer(m, .1);
+    }));
+for (let i = 0; i < layers.length; i++) {
+    layers[i] = {
+        id: i,
+        name: 'Dataset ' + i,
+        points: layers[i]
+    };
+}
+
+var groupedbarchart = new jsOMS.Chart.GroupedBarChart('groupedbar-chart');
+groupedbarchart.setData(layers);
+groupedbarchart.draw();
+</script>
+
+<section style="float: left; width: 33%;">
+    <h1>Stacked Bar Chart</h1>
+    <div id="stackedbar-chart" class="chart" style="width: 100%; height: 170px; float: left;"></div>
+</section>
+
+<script>
+var chart;
+
+var n      = 3, // number of layers
+    m      = 30, // number of samples per layer
+    stack  = d3.layout.stack(),
+    layers = stack(d3.range(n).map(function ()
+    {
+        return bumpLayer(m, .1);
+    }));
+
+for (let i = 0; i < layers.length; i++) {
+    layers[i] = {
+        id: i,
+        name: 'Dataset ' + i,
+        points: layers[i]
+    };
+}
+
+var stackedbarchart = new jsOMS.Chart.StackedBarChart('stackedbar-chart');
+stackedbarchart.setData(layers);
+stackedbarchart.draw();
+</script>
+
+<section style="float: left; width: 33%;">
+    <h1>Vertical Waterfall Chart</h1>
+    <div id="vwaterfall-chart" class="chart" style="width: 100%; height: 170px; float: left;"></div>
+</section>
+
+<script>
+var vwaterfallchart = new jsOMS.Chart.VWaterfallChart('vwaterfall-chart');
+vwaterfallchart.setData([
+    {name: 'EBIT', value: 100}, 
+    {name: 'two', value: -20}, 
+    {name: 'three', value: 5}, 
+    {name: 'four', value: -7}]); 
+vwaterfallchart.draw();
+</script>
+
+<section style="float: left; width: 33%;">
+    <h1>Waterfall Chart</h1>
+    <div id="waterfall-chart" class="chart" style="width: 100%; height: 170px; float: left;"></div>
+</section>
+
+<script>
+var waterfallchart = new jsOMS.Chart.WaterfallChart('waterfall-chart');
+waterfallchart.setData([
+    {name: 'EBIT', value: 100}, 
+    {name: 'two', value: -20}, 
+    {name: 'three', value: 5}, 
+    {name: 'four', value: -7}]); 
+waterfallchart.draw();
+</script>
+
+<section style="float: left; width: 33%;">
+    <h1>Column Chart</h1>
+    <div id="column-chart" class="chart" style="width: 100%; height: 170px; float: left;"></div>
+</section>
+
+<script>
+var chart;
+
+var n      = 1, // number of layers
+    m      = 30, // number of samples per layer
+    stack  = d3.layout.stack(),
+    layers = stack(d3.range(n).map(function ()
+    {
+        return bumpLayer(m, .1);
+    }));
 
 for (let i = 0; i < layers.length; i++) {
     layers[i] = {
@@ -285,7 +314,10 @@ columnchart.setData(layers);
 columnchart.draw();
 </script>
 
-<div id="groupedcolumn-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
+<section style="float: left; width: 33%;">
+    <h1>Grouped Column Chart</h1>
+    <div id="groupedcolumn-chart" class="chart" style="width: 100%; height: 170px; float: left;"></div>
+</section>
 
 <script>
 var chart;
@@ -297,29 +329,6 @@ var n      = 3, // number of layers
     {
         return bumpLayer(m, .1);
     }));
-
-function bumpLayer(n, o)
-{
-    function bump(a)
-    {
-        var x = 1 / (.1 + Math.random()),
-            y = 2 * Math.random() - .5,
-            z = 10 / (.1 + Math.random());
-
-        for (var i = 0; i < n; i++) {
-            var w = (i / n - y) * z;
-            a[i] += x * Math.exp(-w * w);
-        }
-    }
-
-    var a = [], i;
-    for (i = 0; i < n; ++i) a[i] = o + o * Math.random();
-    for (i = 0; i < 5; ++i) bump(a);
-    return a.map(function (d, i)
-    {
-        return {x: i, y: Math.max(0, d)};
-    });
-}
 
 for (let i = 0; i < layers.length; i++) {
     layers[i] = {
@@ -334,7 +343,10 @@ groupedcolumnchart.setData(layers);
 groupedcolumnchart.draw();
 </script>
 
-<div id="stackedcolumn-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
+<section style="float: left; width: 33%;">
+    <h1>Stacked Column Chart</h1>
+    <div id="stackedcolumn-chart" class="chart" style="width: 100%; height: 170px; float: left;"></div>
+</section>
 
 <script>
 var chart;
@@ -346,29 +358,6 @@ var n      = 3, // number of layers
     {
         return bumpLayer(m, .1);
     }));
-
-function bumpLayer(n, o)
-{
-    function bump(a)
-    {
-        var x = 1 / (.1 + Math.random()),
-            y = 2 * Math.random() - .5,
-            z = 10 / (.1 + Math.random());
-
-        for (var i = 0; i < n; i++) {
-            var w = (i / n - y) * z;
-            a[i] += x * Math.exp(-w * w);
-        }
-    }
-
-    var a = [], i;
-    for (i = 0; i < n; ++i) a[i] = o + o * Math.random();
-    for (i = 0; i < 5; ++i) bump(a);
-    return a.map(function (d, i)
-    {
-        return {x: i, y: Math.max(0, d)};
-    });
-}
 
 for (let i = 0; i < layers.length; i++) {
     layers[i] = {
@@ -383,9 +372,11 @@ stackedcolumnchart.setData(layers);
 stackedcolumnchart.draw();
 </script>
 
-<div id="columnwaterfall-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
+<section style="float: left; width: 33%;">
+    <h1>Pie Chart</h1>
+    <div id="pie-chart" class="chart" style="width: 100%; height: 170px; float: left;"></div>
+</section>
 
-<div id="pie-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
 <script>
 var c, chart, data, dataGen, i, k, count;
 
@@ -420,9 +411,7 @@ dataGen = (function ()
         };
     })(1);
 })();
-
 data = [];
-
 for (i = k = 1; k <= 1; i = ++k) {
     count = i;
     data.push(dataGen());
@@ -433,44 +422,15 @@ piechart.setData(data);
 piechart.draw();
 </script>
 
-<div id="donut-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
+<section style="float: left; width: 33%;">
+    <h1>Donut Chart</h1>
+    <div id="donut-chart" class="chart" style="width: 100%; height: 170px; float: left;"></div>
+</section>
+
 <script>
 var c, chart, data, dataGen, i, k, count;
 
-dataGen = (function ()
-{
-    return (function (id)
-    {
-        return function ()
-        {
-            var tempData, j, nums, y1Seed;
-            nums     = Math.ceil(Math.random() * 5) + 2;
-            y1Seed   = Math.round(Math.random() * 10);
-            tempData = {
-                id: id,
-                name: "Dataset " + id,
-                points: (function ()
-                {
-                    var k, ref, results, prev;
-                    results = [];
-                    for (j = k = 1, ref = nums; 1 <= ref ? k <= ref : k >= ref; j = 1 <= ref ? ++k : --k) {
-                        results.push({
-                            name: 'Name ' + j,
-                            value: y1Seed + Math.round(Math.random() * 5),
-                        });
-                    }
-
-                    return results;
-                })()
-            };
-            id       = id + 1;
-            return tempData;
-        };
-    })(1);
-})();
-
 data = [];
-
 for (i = k = 1; k <= 1; i = ++k) {
     count = i;
     data.push(dataGen());
@@ -481,25 +441,64 @@ donutchart.setData(data);
 donutchart.draw();
 </script>
 
-<div id="gouge-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
-
-<div id="fill-gouge-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
-
-<div id="radar-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
-
-<div id="pyramid-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
+<section style="float: left; width: 33%;">
+    <h1>Stacked Pie Chart</h1>
+    <div id="pie-chart2" class="chart" style="width: 100%; height: 170px; float: left;"></div>
+</section>
 
 <script>
-var pyramidchart = new jsOMS.Chart.PyramidChart('waterfall-chart');
-pyramidchart.setData([
-    {name: 'EBIT', value: 100}, 
-    {name: 'two', value: -20}, 
-    {name: 'three', value: 5}, 
-    {name: 'four', value: -7}]); 
-pyramidchart.draw();
+data = [];
+for (i = k = 1; k <= 3; i = ++k) {
+    count = i;
+    data.push(dataGen());
+}
+
+var piechart2 = new jsOMS.Chart.PieChart('pie-chart2');
+piechart2.setData(data);
+piechart2.draw();
 </script>
 
-<div id="scatterplot-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
+<section style="float: left; width: 33%;">
+    <h1>Stacked Donut Chart</h1>
+    <div id="donut-chart2" class="chart" style="width: 100%; height: 170px; float: left;"></div>
+</section>
+
+<script>
+data = [];
+for (i = k = 1; k <= 3; i = ++k) {
+    count = i;
+    data.push(dataGen());
+}
+
+var donutchart2 = new jsOMS.Chart.DonutChart('donut-chart2');
+donutchart2.setData(data);
+donutchart2.draw();
+</script>
+
+<section style="float: left; width: 33%;">
+    <h1>Gouge Chart</h1>
+    <div id="gouge-chart" class="chart" style="width: 100%; height: 170px; float: left;"></div>
+</section>
+
+<section style="float: left; width: 33%;">
+    <h1>Fill Gouge Chart</h1>
+    <div id="fill-gouge-chart" class="chart" style="width: 100%; height: 170px; float: left;"></div>
+</section>
+
+<section style="float: left; width: 33%;">
+    <h1>Radar Chart</h1>
+    <div id="radar-chart" class="chart" style="width: 100%; height: 170px; float: left;"></div>
+</section>
+
+<section style="float: left; width: 33%;">
+    <h1>Pyramid Chart</h1>
+    <div id="pyramid-chart" class="chart" style="width: 100%; height: 170px; float: left;"></div>
+</section>
+
+<section style="float: left; width: 33%;">
+    <h1>Scatterplot Chart</h1>
+    <div id="scatterplot-chart" class="chart" style="width: 100%; height: 170px; float: left;"></div>
+</section>
 
 <script>
 var scatterplotchart = new jsOMS.Chart.ScatterplotChart('scatterplot-chart');
@@ -544,9 +543,15 @@ scatterplotchart.setData([
 scatterplotchart.draw();
 </script>
 
-<div id="boxplot-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
+<section style="float: left; width: 33%;">
+    <h1>Boxplot Chart</h1>
+    <div id="boxplot-chart" class="chart" style="width: 100%; height: 170px; float: left;"></div>
+</section>
 
-<div id="candlestick-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
+<section style="float: left; width: 33%;">
+    <h1>Candlestick Chart</h1>
+    <div id="candlestick-chart" class="chart" style="width: 100%; height: 170px; float: left;"></div>
+</section>
 
 <script>
 var candlestickchart = new jsOMS.Chart.CandlestickChart('candlestick-chart');
@@ -566,7 +571,10 @@ candlestickchart.setData([
 candlestickchart.draw();
 </script>
 
-<div id="highlow-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
+<section style="float: left; width: 33%;">
+    <h1>OHLC Chart</h1>
+    <div id="highlow-chart" class="chart" style="width: 100%; height: 170px; float: left;"></div>
+</section>
 
 <script>
 var ohlcchart = new jsOMS.Chart.OhlcChart('highlow-chart');
@@ -586,7 +594,10 @@ ohlcchart.setData([
 ohlcchart.draw();
 </script>
 
-<div id="calendar-chart" class="chart" style="width: 33%; height: 70px; float: left;"></div>
+<section style="float: left; width: 33%;">
+    <h1>Calendar Chart</h1>
+    <div id="calendar-chart" class="chart" style="width: 100%; height: 70px; float: left;"></div>
+</section>
 
 <script>
 var calendarchart = new jsOMS.Chart.CalendarChart('calendar-chart');
@@ -628,10 +639,22 @@ calendarchart.setData([
 calendarchart.draw();
 </script>
 
-<div id="gantt-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
+<section style="float: left; width: 33%;">
+    <h1>Gantt Chart</h1>
+    <div id="gantt-chart" class="chart" style="width: 100%; height: 170px; float: left;"></div>
+</section>
 
-<div id="map-heat-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
+<section style="float: left; width: 33%;">
+    <h1>Heatmap Chart</h1>
+    <div id="map-heat-chart" class="chart" style="width: 100%; height: 170px; float: left;"></div>
+</section>
 
-<div id="map-bubble-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
+<section style="float: left; width: 33%;">
+    <h1>Bubblemap Chart</h1>
+    <div id="map-bubble-chart" class="chart" style="width: 100%; height: 170px; float: left;"></div>
+</section>
 
-<div id="tree-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
+<section style="float: left; width: 33%;">
+    <h1>Tree Chart</h1>
+    <div id="tree-chart" class="chart" style="width: 100%; height: 170px; float: left;"></div>
+</section>
