@@ -19,6 +19,7 @@
         <script src="http://127.0.0.1/jsOMS/Chart/WaterfallChart.js"></script>
         <script src="http://127.0.0.1/jsOMS/Chart/PyramidChart.js"></script>
         <script src="http://127.0.0.1/jsOMS/Chart/ScatterplotChart.js"></script>
+        <script src="http://127.0.0.1/jsOMS/Chart/CalendarChart.js"></script>
     </head>
 <body>
 <div id="line-chart" class="chart chart-line" style="width: 33%; height: 170px; float: left;"></div>
@@ -547,7 +548,47 @@ scatterplotchart.draw();
 
 <div id="highlow-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
 
-<div id="calendar-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
+<div id="calendar-chart" class="chart" style="width: 100%; height: 130px; float: left;"></div>
+
+<script>
+var calendarchart = new jsOMS.Chart.CalendarChart('calendar-chart');
+calendarchart.setData([
+    {
+        id: 1,
+        name: '2014',
+        points: [
+            {x: '2014-10-01', y: 10732.27},
+            {x: '2014-1-08', y: 15732.27},
+            {x: '2014-09-25', y: 20732.27},
+            {x: '2014-04-30', y: 5732.27},
+            {x: '2014-08-13', y: 12732.27},
+            {x: '2014-08-21', y: 8732.27}
+        ]
+    }, {
+        id: 2,
+        name: '2015',
+        points: [
+            {x: '2015-10-01', y: 10732.27},
+            {x: '2015-1-08', y: 15732.27},
+            {x: '2015-09-25', y: 20732.27},
+            {x: '2015-04-30', y: 5732.27},
+            {x: '2015-08-13', y: 12732.27},
+            {x: '2015-08-21', y: 8732.27}
+        ]
+    }, {
+        id: 3,
+        name: '2016',
+        points: [
+            {x: '2016-10-01', y: 10732.27},
+            {x: '2016-01-08', y: 15732.27},
+            {x: '2016-09-25', y: 20732.27},
+            {x: '2016-04-30', y: 5732.27},
+            {x: '2016-08-13', y: 12732.27},
+            {x: '2016-08-21', y: 8732.27}
+        ]
+    }]); 
+calendarchart.draw();
+</script>
 
 <div id="gantt-chart" class="chart" style="width: 33%; height: 170px; float: left;"></div>
 
