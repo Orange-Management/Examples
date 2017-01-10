@@ -156,7 +156,7 @@ diffareachart.draw();
 var chart;
 
 var n      = 1, // number of layers
-    m      = 30, // number of samples per layer
+    m      = 10, // number of samples per layer
     stack  = d3.layout.stack(),
     layers = stack(d3.range(n).map(function ()
     {
@@ -207,7 +207,7 @@ barchart.draw();
 var chart;
 
 var n      = 3, // number of layers
-    m      = 10, // number of samples per layer
+    m      = 5, // number of samples per layer
     stack  = d3.layout.stack(),
     layers = stack(d3.range(n).map(function ()
     {
@@ -235,7 +235,7 @@ groupedbarchart.draw();
 var chart;
 
 var n      = 3, // number of layers
-    m      = 30, // number of samples per layer
+    m      = 5, // number of samples per layer
     stack  = d3.layout.stack(),
     layers = stack(d3.range(n).map(function ()
     {
@@ -657,4 +657,9 @@ calendarchart.draw();
 <section style="float: left; width: 33%;">
     <h1>Tree Chart</h1>
     <div id="tree-chart" class="chart" style="width: 100%; height: 170px; float: left;"></div>
+</section>
+
+<section style="float: left; width: 33%;">
+    <h1>BCG Chart</h1>
+    <div id="bcg-chart" class="chart" style="width: 100%; height: 170px; float: left;"></div>
 </section>
