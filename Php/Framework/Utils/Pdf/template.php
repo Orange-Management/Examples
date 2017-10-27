@@ -38,14 +38,14 @@ class DefaultPdfTemplate extends \phpOMS\Utils\Pdf\Pdf
                                   'color' => $this->footer_line_color));
 
         $w_page = isset($this->l['w_page']) ? $this->l['w_page'] . ' ' : '';
-        if(empty($this->pagegroups)) {
+        if (empty($this->pagegroups)) {
             $pagenumtxt = $w_page . $this->getAliasNumPage() . ' / ' . $this->getAliasNbPages();
         } else {
             $pagenumtxt = $w_page . $this->getPageNumGroupAlias() . ' / ' . $this->getPageGroupAlias();
         }
         $this->SetY($cur_y);
         //Print page number
-        if($this->getRTL()) {
+        if ($this->getRTL()) {
             $this->SetX($this->original_rMargin);
             $this->Cell(0, 0, $pagenumtxt, 'T', 0, 'L');
         } else {
